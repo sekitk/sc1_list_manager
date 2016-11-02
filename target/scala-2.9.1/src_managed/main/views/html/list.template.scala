@@ -21,10 +21,10 @@ import com.avaje.ebean._
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object list extends BaseScalaTemplate[play.api.templates.Html,Format[play.api.templates.Html]](play.api.templates.HtmlFormat) with play.api.templates.Template4[Page[Computer],String,String,String,play.api.templates.Html] {
+object list extends BaseScalaTemplate[play.api.templates.Html,Format[play.api.templates.Html]](play.api.templates.HtmlFormat) with play.api.templates.Template4[Page[Reference],String,String,String,play.api.templates.Html] {
 
     /**/
-    def apply/*1.2*/(currentPage: Page[Computer], currentSortBy: String, currentOrder: String, currentFilter: String):play.api.templates.Html = {
+    def apply/*1.2*/(currentPage: Page[Reference], currentSortBy: String, currentOrder: String, currentFilter: String):play.api.templates.Html = {
         _display_ {
 def /*32.2*/header/*32.8*/(key:String, title:String):play.api.templates.Html = {_display_(
 
@@ -54,7 +54,7 @@ Seq(format.raw/*32.38*/("""
     routes.Application.list(newPage, sortBy, order, currentFilter)
     
 }};
-Seq(format.raw/*1.99*/("""
+Seq(format.raw/*1.100*/("""
 
 """),format.raw/*5.42*/("""
 """),format.raw/*27.2*/("""
@@ -64,7 +64,7 @@ Seq(format.raw/*1.99*/("""
 
 """),_display_(Seq(/*38.2*/main/*38.6*/ {_display_(Seq(format.raw/*38.8*/("""
     
-    <h1 id="homeTitle">"""),_display_(Seq(/*40.25*/Messages("computers.list.title", currentPage.getTotalRowCount))),format.raw/*40.87*/("""</h1>
+    <h1 id="homeTitle">"""),_display_(Seq(/*40.25*/Messages("reference.list.title", currentPage.getTotalRowCount))),format.raw/*40.87*/("""</h1>
 
     """),_display_(Seq(/*42.6*/if(flash.containsKey("success"))/*42.38*/ {_display_(Seq(format.raw/*42.40*/("""
         <div class="alert-message warning">
@@ -75,11 +75,11 @@ Seq(format.raw/*1.99*/("""
     <div id="actions">
         
         <form action=""""),_display_(Seq(/*50.24*/link(0, "name"))),format.raw/*50.39*/("""" method="GET">
-            <input type="search" id="searchbox" name="f" value=""""),_display_(Seq(/*51.66*/currentFilter)),format.raw/*51.79*/("""" placeholder="Filter by computer name...">
-            <input type="submit" id="searchsubmit" value="Filter by name" class="btn primary">
+            <input type="search" id="searchbox" name="f" value=""""),_display_(Seq(/*51.66*/currentFilter)),format.raw/*51.79*/("""" placeholder="Filter by title...">
+            <input type="submit" id="searchsubmit" value="Filter by title" class="btn primary">
         </form>
         
-        <a class="btn success" id="add" href=""""),_display_(Seq(/*55.48*/routes/*55.54*/.Application.create())),format.raw/*55.75*/("""">Add a new computer</a>
+        <a class="btn success" id="add" href=""""),_display_(Seq(/*55.48*/routes/*55.54*/.Application.create())),format.raw/*55.75*/("""">Add new reference</a>
         
     </div>
     
@@ -94,91 +94,84 @@ Seq(format.raw/*1.99*/("""
         <table class="computers zebra-striped">
             <thead>
                 <tr>
-                    """),_display_(Seq(/*70.22*/header("name", "Computer name"))),format.raw/*70.53*/("""
-                    """),_display_(Seq(/*71.22*/header("introduced", "Introduced"))),format.raw/*71.56*/("""
-                    """),_display_(Seq(/*72.22*/header("discontinued", "Discontinued"))),format.raw/*72.60*/("""
-                    """),_display_(Seq(/*73.22*/header("company.name", "Company"))),format.raw/*73.55*/("""
+                    """),_display_(Seq(/*70.22*/header("title", "title"))),format.raw/*70.46*/("""
+                    """),_display_(Seq(/*71.22*/header("link", "link"))),format.raw/*71.44*/("""
+                    """),_display_(Seq(/*72.22*/header("note", "note"))),format.raw/*72.44*/("""
                 </tr>
             </thead>
             <tbody>
 
-                """),_display_(Seq(/*78.18*/for(computer <- currentPage.getList) yield /*78.54*/ {_display_(Seq(format.raw/*78.56*/("""
+                """),_display_(Seq(/*77.18*/for(reference <- currentPage.getList) yield /*77.55*/ {_display_(Seq(format.raw/*77.57*/("""
                     <tr>
-                        <td><a href=""""),_display_(Seq(/*80.39*/routes/*80.45*/.Application.edit(computer.id))),format.raw/*80.75*/("""">"""),_display_(Seq(/*80.78*/computer/*80.86*/.name)),format.raw/*80.91*/("""</a></td>
+                        <td><a href=""""),_display_(Seq(/*79.39*/routes/*79.45*/.Application.edit(reference.id))),format.raw/*79.76*/("""">"""),_display_(Seq(/*79.79*/reference/*79.88*/.title)),format.raw/*79.94*/("""</a></td>
                         <td>
-                            """),_display_(Seq(/*82.30*/if(computer.introduced == null)/*82.61*/ {_display_(Seq(format.raw/*82.63*/("""
+                            """),_display_(Seq(/*81.30*/if(reference.link == null)/*81.56*/ {_display_(Seq(format.raw/*81.58*/("""
                                 <em>-</em>
-                            """)))}/*84.31*/else/*84.36*/{_display_(Seq(format.raw/*84.37*/("""
-                                """),_display_(Seq(/*85.34*/computer/*85.42*/.introduced.format("dd MMM yyyy"))),format.raw/*85.75*/("""
-                            """)))})),format.raw/*86.30*/("""
+                            """)))}/*83.31*/else/*83.36*/{_display_(Seq(format.raw/*83.37*/("""
+                                """),_display_(Seq(/*84.34*/reference/*84.43*/.link)),format.raw/*84.48*/("""
+                            """)))})),format.raw/*85.30*/("""
                         </td>
                         <td>
-                            """),_display_(Seq(/*89.30*/if(computer.discontinued == null)/*89.63*/ {_display_(Seq(format.raw/*89.65*/("""
+                            """),_display_(Seq(/*88.30*/if(reference.note == null)/*88.56*/ {_display_(Seq(format.raw/*88.58*/("""
                                 <em>-</em>
-                            """)))}/*91.31*/else/*91.36*/{_display_(Seq(format.raw/*91.37*/("""
-                                """),_display_(Seq(/*92.34*/computer/*92.42*/.discontinued.format("dd MMM yyyy"))),format.raw/*92.77*/("""
-                            """)))})),format.raw/*93.30*/("""
-                        </td>
-                        <td>
-                            """),_display_(Seq(/*96.30*/if(computer.company == null)/*96.58*/ {_display_(Seq(format.raw/*96.60*/("""
-                                <em>-</em>
-                            """)))}/*98.31*/else/*98.36*/{_display_(Seq(format.raw/*98.37*/("""
-                                """),_display_(Seq(/*99.34*/computer/*99.42*/.company.name)),format.raw/*99.55*/("""
-                            """)))})),format.raw/*100.30*/("""
+                            """)))}/*90.31*/else/*90.36*/{_display_(Seq(format.raw/*90.37*/("""
+                                """),_display_(Seq(/*91.34*/reference/*91.43*/.note)),format.raw/*91.48*/("""
+                            """)))})),format.raw/*92.30*/("""
                         </td>
                     </tr>
-                """)))})),format.raw/*103.18*/("""
+                """)))})),format.raw/*95.18*/("""
 
             </tbody>
         </table>
 
         <div id="pagination" class="pagination">
             <ul>
-                """),_display_(Seq(/*110.18*/if(currentPage.hasPrev)/*110.41*/ {_display_(Seq(format.raw/*110.43*/("""
+                """),_display_(Seq(/*102.18*/if(currentPage.hasPrev)/*102.41*/ {_display_(Seq(format.raw/*102.43*/("""
                     <li class="prev">
-                        <a href=""""),_display_(Seq(/*112.35*/link(currentPage.getPageIndex - 1, null))),format.raw/*112.75*/("""">&larr; Previous</a>
+                        <a href=""""),_display_(Seq(/*104.35*/link(currentPage.getPageIndex - 1, null))),format.raw/*104.75*/("""">&larr; Previous</a>
                     </li>
-                """)))}/*114.19*/else/*114.24*/{_display_(Seq(format.raw/*114.25*/("""
+                """)))}/*106.19*/else/*106.24*/{_display_(Seq(format.raw/*106.25*/("""
                     <li class="prev disabled">
                         <a>&larr; Previous</a>
                     </li>
-                """)))})),format.raw/*118.18*/("""
+                """)))})),format.raw/*110.18*/("""
                 <li class="current">
-                    <a>Displaying """),_display_(Seq(/*120.36*/currentPage/*120.47*/.getDisplayXtoYofZ(" to "," of "))),format.raw/*120.80*/("""</a>
+                    <a>Displaying """),_display_(Seq(/*112.36*/currentPage/*112.47*/.getDisplayXtoYofZ(" to "," of "))),format.raw/*112.80*/("""</a>
                 </li>
-                """),_display_(Seq(/*122.18*/if(currentPage.hasNext)/*122.41*/ {_display_(Seq(format.raw/*122.43*/("""
+                """),_display_(Seq(/*114.18*/if(currentPage.hasNext)/*114.41*/ {_display_(Seq(format.raw/*114.43*/("""
                     <li class="next">
-                        <a href=""""),_display_(Seq(/*124.35*/link(currentPage.getPageIndex + 1, null))),format.raw/*124.75*/("""">Next &rarr;</a>
+                        <a href=""""),_display_(Seq(/*116.35*/link(currentPage.getPageIndex + 1, null))),format.raw/*116.75*/("""">Next &rarr;</a>
                     </li>
-                """)))}/*126.19*/else/*126.24*/{_display_(Seq(format.raw/*126.25*/("""
+                """)))}/*118.19*/else/*118.24*/{_display_(Seq(format.raw/*118.25*/("""
                     <li class="next disabled">
                         <a>Next &rarr;</a>
                     </li>
-                """)))})),format.raw/*130.18*/("""
+                """)))})),format.raw/*122.18*/("""
             </ul>
         </div>
         
-    """)))})),format.raw/*134.6*/("""
+    """)))})),format.raw/*126.6*/("""
         
-""")))})),format.raw/*136.2*/("""
+""")))})),format.raw/*128.2*/("""
 
-            """))}
+            
+"""))}
     }
     
-    def render(currentPage:Page[Computer],currentSortBy:String,currentOrder:String,currentFilter:String) = apply(currentPage,currentSortBy,currentOrder,currentFilter)
+    def render(currentPage:Page[Reference],currentSortBy:String,currentOrder:String,currentFilter:String) = apply(currentPage,currentSortBy,currentOrder,currentFilter)
     
-    def f:((Page[Computer],String,String,String) => play.api.templates.Html) = (currentPage,currentSortBy,currentOrder,currentFilter) => apply(currentPage,currentSortBy,currentOrder,currentFilter)
+    def f:((Page[Reference],String,String,String) => play.api.templates.Html) = (currentPage,currentSortBy,currentOrder,currentFilter) => apply(currentPage,currentSortBy,currentOrder,currentFilter)
     
     def ref = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Mon Oct 31 17:16:59 GMT 2016
+                    DATE: Tue Nov 01 17:08:07 GMT 2016
                     SOURCE: C:/workspace/PlayFramework/play-2.0/samples/java/computer-database/app/views/list.scala.html
-                    HASH: a9380022df1cf73f3b096f57043bd1ee68d02f0f
-                    MATRIX: 783->1|941->844|955->850|1044->880|1092->897|1104->900|1143->917|1183->926|1217->952|1305->1016|1357->1037|1391->1049|1425->1052|1452->1057|1490->227|1501->231|2027->98|2056->225|2084->732|2114->842|2142->1073|2175->1076|2187->1080|2221->1082|2282->1112|2366->1174|2408->1186|2449->1218|2484->1220|2596->1301|2610->1306|2647->1321|2699->1342|2788->1400|2825->1415|2937->1496|2972->1509|3214->1720|3229->1726|3272->1747|3357->1802|3403->1839|3438->1841|3562->1948|3575->1953|3609->1954|3760->2074|3813->2105|3866->2127|3922->2161|3975->2183|4035->2221|4088->2243|4143->2276|4256->2358|4308->2394|4343->2396|4438->2460|4453->2466|4505->2496|4539->2499|4556->2507|4583->2512|4682->2580|4722->2611|4757->2613|4849->2687|4862->2692|4896->2693|4961->2727|4978->2735|5033->2768|5095->2798|5215->2887|5257->2920|5292->2922|5384->2996|5397->3001|5431->3002|5496->3036|5513->3044|5570->3079|5632->3109|5752->3198|5789->3226|5824->3228|5916->3302|5929->3307|5963->3308|6028->3342|6045->3350|6080->3363|6143->3393|6250->3467|6406->3591|6439->3614|6475->3616|6580->3689|6643->3729|6728->3795|6742->3800|6777->3801|6948->3939|7053->4012|7074->4023|7130->4056|7206->4100|7239->4123|7275->4125|7380->4198|7443->4238|7524->4300|7538->4305|7573->4306|7740->4440|7820->4488|7863->4499
-                    LINES: 27->1|29->32|29->32|31->32|32->33|32->33|32->33|32->33|32->33|32->33|33->34|33->34|33->34|33->34|35->6|35->6|57->1|59->5|60->27|62->31|63->36|65->38|65->38|65->38|67->40|67->40|69->42|69->42|69->42|71->44|71->44|71->44|73->46|77->50|77->50|78->51|78->51|82->55|82->55|82->55|86->59|86->59|86->59|92->65|92->65|92->65|97->70|97->70|98->71|98->71|99->72|99->72|100->73|100->73|105->78|105->78|105->78|107->80|107->80|107->80|107->80|107->80|107->80|109->82|109->82|109->82|111->84|111->84|111->84|112->85|112->85|112->85|113->86|116->89|116->89|116->89|118->91|118->91|118->91|119->92|119->92|119->92|120->93|123->96|123->96|123->96|125->98|125->98|125->98|126->99|126->99|126->99|127->100|130->103|137->110|137->110|137->110|139->112|139->112|141->114|141->114|141->114|145->118|147->120|147->120|147->120|149->122|149->122|149->122|151->124|151->124|153->126|153->126|153->126|157->130|161->134|163->136
+                    HASH: 10cc7e91aac54573aac49c9d245a453ddc7d2a2e
+                    MATRIX: 784->1|943->876|957->882|1046->912|1095->930|1107->933|1146->950|1186->959|1220->985|1308->1049|1361->1071|1395->1083|1429->1086|1456->1091|1496->233|1507->237|2055->99|2086->230|2115->759|2147->873|2176->1109|2211->1114|2223->1118|2257->1120|2320->1152|2404->1214|2448->1228|2489->1260|2524->1262|2638->1345|2652->1350|2689->1365|2743->1388|2836->1450|2873->1465|2986->1547|3021->1560|3260->1768|3275->1774|3318->1795|3406->1853|3452->1890|3487->1892|3617->2005|3630->2010|3664->2011|3820->2136|3866->2160|3920->2183|3964->2205|4018->2228|4062->2250|4180->2337|4233->2374|4268->2376|4365->2442|4380->2448|4433->2479|4467->2482|4485->2491|4513->2497|4614->2567|4649->2593|4684->2595|4778->2671|4791->2676|4825->2677|4891->2712|4909->2721|4936->2726|4999->2757|5122->2849|5157->2875|5192->2877|5286->2953|5299->2958|5333->2959|5399->2994|5417->3003|5444->3008|5507->3039|5616->3116|5779->3247|5812->3270|5848->3272|5955->3347|6018->3387|6105->3455|6119->3460|6154->3461|6329->3603|6436->3678|6457->3689|6513->3722|6591->3768|6624->3791|6660->3793|6767->3868|6830->3908|6913->3972|6927->3977|6962->3978|7133->4116|7217->4168|7262->4181
+                    LINES: 27->1|29->32|29->32|31->32|32->33|32->33|32->33|32->33|32->33|32->33|33->34|33->34|33->34|33->34|35->6|35->6|57->1|59->5|60->27|62->31|63->36|65->38|65->38|65->38|67->40|67->40|69->42|69->42|69->42|71->44|71->44|71->44|73->46|77->50|77->50|78->51|78->51|82->55|82->55|82->55|86->59|86->59|86->59|92->65|92->65|92->65|97->70|97->70|98->71|98->71|99->72|99->72|104->77|104->77|104->77|106->79|106->79|106->79|106->79|106->79|106->79|108->81|108->81|108->81|110->83|110->83|110->83|111->84|111->84|111->84|112->85|115->88|115->88|115->88|117->90|117->90|117->90|118->91|118->91|118->91|119->92|122->95|129->102|129->102|129->102|131->104|131->104|133->106|133->106|133->106|137->110|139->112|139->112|139->112|141->114|141->114|141->114|143->116|143->116|145->118|145->118|145->118|149->122|153->126|155->128
                     -- GENERATED --
                 */
             

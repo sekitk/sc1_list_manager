@@ -1,4 +1,4 @@
-@(id: Long, computerForm: Form[Computer])
+@(id: Long, referenceForm: Form[Reference])
 
 @import helper._
 
@@ -6,34 +6,27 @@
 
 @main {
     
-    <h1>Edit computer</h1>
+    <h1>Edit reference</h1>
     
     @form(routes.Application.update(id)) {
         
         <fieldset>
         
-            @inputText(computerForm("name"), '_label -> "Computer name")
-            @inputText(computerForm("introduced"), '_label -> "Introduced date")
-            @inputText(computerForm("discontinued"), '_label -> "Discontinued date")
-            
-            @select(
-                computerForm("company.id"), 
-                options(Company.options), 
-                '_label -> "Company", '_default -> "-- Choose a company --",
-                '_showConstraints -> false
-            )
+            @inputText(referenceForm("title"), '_label -> "title")
+            @inputText(referenceForm("link"), '_label -> "link")
+            @inputText(referenceForm("note"), '_label -> "note")
         
         </fieldset>
         
         <div class="actions">
-            <input type="submit" value="Save this computer" class="btn primary"> or 
+            <input type="submit" value="Save this reference" class="btn primary"> or 
             <a href="@routes.Application.list()" class="btn">Cancel</a> 
         </div>
         
     }
     
     @form(routes.Application.delete(id), 'class -> "topRight") {
-        <input type="submit" value="Delete this computer" class="btn danger">
+        <input type="submit" value="Delete this reference" class="btn danger">
     }
     
 }

@@ -32,7 +32,7 @@ Seq(format.raw/*1.17*/("""
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Computers database</title>
+        <title>reference database</title>
         <link rel="stylesheet" type="text/css" media="screen" href=""""),_display_(Seq(/*7.70*/routes/*7.76*/.Assets.at("stylesheets/bootstrap.min.css"))),format.raw/*7.119*/(""""> 
         <link rel="stylesheet" type="text/css" media="screen" href=""""),_display_(Seq(/*8.70*/routes/*8.76*/.Assets.at("stylesheets/main.css"))),format.raw/*8.110*/(""""> 
     </head>
@@ -41,7 +41,7 @@ Seq(format.raw/*1.17*/("""
         <header class="topbar">
             <h1 class="fill">
                 <a href=""""),_display_(Seq(/*14.27*/routes/*14.33*/.Application.index())),format.raw/*14.53*/("""">
-                    Play 2.0 sample application &mdash; Computer database
+                    Reference List Manager
                 </a>
             </h1>
         </header>
@@ -64,10 +64,10 @@ Seq(format.raw/*1.17*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Mon Oct 31 17:16:59 GMT 2016
+                    DATE: Tue Nov 01 15:34:55 GMT 2016
                     SOURCE: C:/workspace/PlayFramework/play-2.0/samples/java/computer-database/app/views/main.scala.html
-                    HASH: 6da78b864eb8add205e5d92d8539308a4a652fac
-                    MATRIX: 752->1|839->16|1016->163|1030->169|1095->212|1198->285|1212->291|1268->325|1423->449|1438->455|1480->475|1695->659|1724->666
+                    HASH: d88cbdda70bb70be42762f7c4e642627e093e3e7
+                    MATRIX: 752->1|839->16|1022->169|1036->175|1101->218|1205->292|1219->298|1275->332|1436->462|1451->468|1493->488|1684->648|1713->655
                     LINES: 27->1|30->1|36->7|36->7|36->7|37->8|37->8|37->8|43->14|43->14|43->14|50->21|50->21
                     -- GENERATED --
                 */

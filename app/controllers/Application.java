@@ -19,7 +19,7 @@ public class Application extends Controller {
      * This result directly redirect to application home.
      */
     public static Result GO_HOME = redirect(
-        routes.Application.list(0, "name", "asc", "")
+        routes.Application.list(0, "title", "asc", "")
     );
     
     /**
@@ -40,7 +40,7 @@ public class Application extends Controller {
     public static Result list(int page, String sortBy, String order, String filter) {
         return ok(
             list.render(
-                Computer.page(page, 10, sortBy, order, filter),
+                Reference.page(page, 10, sortBy, order, filter),
                 sortBy, order, filter
             )
         );
@@ -52,11 +52,11 @@ public class Application extends Controller {
      * @param id Id of the computer to edit
      */
     public static Result edit(Long id) {
-        Form<Computer> computerForm = form(Computer.class).fill(
-            Computer.find.byId(id)
+        Form<Reference> referenceForm = form(Reference.class).fill(
+            Reference.find.byId(id)
         );
         return ok(
-            editForm.render(id, computerForm)
+            editForm.render(id, referenceForm)
         );
     }
     
@@ -66,12 +66,12 @@ public class Application extends Controller {
      * @param id Id of the computer to edit
      */
     public static Result update(Long id) {
-        Form<Computer> computerForm = form(Computer.class).bindFromRequest();
-        if(computerForm.hasErrors()) {
-            return badRequest(editForm.render(id, computerForm));
+        Form<Reference> referenceForm = form(Reference.class).bindFromRequest();
+        if(referenceForm.hasErrors()) {
+            return badRequest(editForm.render(id, referenceForm));
         }
-        computerForm.get().update(id);
-        flash("success", "Computer " + computerForm.get().name + " has been updated");
+        referenceForm.get().update(id);
+        flash("success", "Reference " + referenceForm.get().title + " has been updated");
         return GO_HOME;
     }
     
@@ -79,9 +79,9 @@ public class Application extends Controller {
      * Display the 'new computer form'.
      */
     public static Result create() {
-        Form<Computer> computerForm = form(Computer.class);
+        Form<Reference> referenceForm = form(Reference.class);
         return ok(
-            createForm.render(computerForm)
+            createForm.render(referenceForm)
         );
     }
     
@@ -89,21 +89,20 @@ public class Application extends Controller {
      * Handle the 'new computer form' submission 
      */
     public static Result save() {
-        Form<Computer> computerForm = form(Computer.class).bindFromRequest();
-        if(computerForm.hasErrors()) {
-            return badRequest(createForm.render(computerForm));
+        Form<Reference> referenceForm = form(Reference.class).bindFromRequest();
+        if(referenceForm.hasErrors()) {
+            return badRequest(createForm.render(referenceForm));
         }
-        computerForm.get().save();
-        flash("success", "Computer " + computerForm.get().name + " has been created");
+        referenceForm.get().save();
+        flash("success", "Reference " + referenceForm.get().title + " has been created");
         return GO_HOME;
-    }
-    
+}    
     /**
      * Handle computer deletion
      */
     public static Result delete(Long id) {
-        Computer.find.ref(id).delete();
-        flash("success", "Computer has been deleted");
+        Reference.find.ref(id).delete();
+        flash("success", "Reference has been deleted");
         return GO_HOME;
     }
     

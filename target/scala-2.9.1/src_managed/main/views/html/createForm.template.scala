@@ -21,64 +21,59 @@ import com.avaje.ebean._
 import play.mvc.Http.Context.Implicit._
 import views.html._
 /**/
-object createForm extends BaseScalaTemplate[play.api.templates.Html,Format[play.api.templates.Html]](play.api.templates.HtmlFormat) with play.api.templates.Template1[Form[Computer],play.api.templates.Html] {
+object createForm extends BaseScalaTemplate[play.api.templates.Html,Format[play.api.templates.Html]](play.api.templates.HtmlFormat) with play.api.templates.Template1[Form[Reference],play.api.templates.Html] {
 
     /**/
-    def apply/*1.2*/(computerForm: Form[Computer]):play.api.templates.Html = {
+    def apply/*1.2*/(referenceForm: Form[Reference]):play.api.templates.Html = {
         _display_ {import helper._
 
 implicit def /*5.2*/implicitFieldConstructor/*5.26*/ = {{ FieldConstructor(twitterBootstrapInput.render) }};
-Seq(format.raw/*1.32*/("""
+Seq(format.raw/*1.34*/("""
 
 """),format.raw/*4.1*/("""
 """),format.raw/*5.80*/(""" 
 
 """),_display_(Seq(/*7.2*/main/*7.6*/ {_display_(Seq(format.raw/*7.8*/("""
     
-    <h1>Add a computer</h1>
+    <h1>Add a reference</h1>
     
     """),_display_(Seq(/*11.6*/form(routes.Application.save())/*11.37*/ {_display_(Seq(format.raw/*11.39*/("""
         
         <fieldset>
         
-            """),_display_(Seq(/*15.14*/inputText(computerForm("name"), '_label -> "Computer name"))),format.raw/*15.73*/("""
-            """),_display_(Seq(/*16.14*/inputText(computerForm("introduced"), '_label -> "Introduced date"))),format.raw/*16.81*/("""
-            """),_display_(Seq(/*17.14*/inputText(computerForm("discontinued"), '_label -> "Discontinued date"))),format.raw/*17.85*/("""
+            """),_display_(Seq(/*15.14*/inputText(referenceForm("title"), '_label -> "title"))),format.raw/*15.67*/("""
+            """),_display_(Seq(/*16.14*/inputText(referenceForm("link"), '_label -> "link"))),format.raw/*16.65*/("""
+            """),_display_(Seq(/*17.14*/inputText(referenceForm("note"), '_label -> "note"))),format.raw/*17.65*/("""
 
-            """),_display_(Seq(/*19.14*/select(
-                computerForm("company.id"), 
-                options(Company.options), 
-                '_label -> "Company", '_default -> "-- Choose a company --",
-                '_showConstraints -> false
-            ))),format.raw/*24.14*/("""
             
 
         </fieldset>
         
         <div class="actions">
-            <input type="submit" value="Create this computer" class="btn primary"> or 
-            <a href=""""),_display_(Seq(/*31.23*/routes/*31.29*/.Application.list())),format.raw/*31.48*/("""" class="btn">Cancel</a> 
+            <input type="submit" value="Create this reference" class="btn primary"> or 
+            <a href=""""),_display_(Seq(/*25.23*/routes/*25.29*/.Application.list())),format.raw/*25.48*/("""" class="btn">Cancel</a> 
         </div>
         
-    """)))})),format.raw/*34.6*/("""
+    """)))})),format.raw/*28.6*/("""
     
-""")))})))}
+""")))})),format.raw/*30.2*/("""
+"""))}
     }
     
-    def render(computerForm:Form[Computer]) = apply(computerForm)
+    def render(referenceForm:Form[Reference]) = apply(referenceForm)
     
-    def f:((Form[Computer]) => play.api.templates.Html) = (computerForm) => apply(computerForm)
+    def f:((Form[Reference]) => play.api.templates.Html) = (referenceForm) => apply(referenceForm)
     
     def ref = this
 
 }
                 /*
                     -- GENERATED --
-                    DATE: Mon Oct 31 17:16:58 GMT 2016
+                    DATE: Tue Nov 01 17:06:23 GMT 2016
                     SOURCE: C:/workspace/PlayFramework/play-2.0/samples/java/computer-database/app/views/createForm.scala.html
-                    HASH: 6169a16df7f117e1c8cbb4843f4ce6ec88628dbe
-                    MATRIX: 768->1|883->52|915->76|994->31|1022->50|1050->130|1083->134|1094->138|1127->140|1201->184|1241->215|1276->217|1358->268|1439->327|1484->341|1573->408|1618->422|1711->493|1757->508|2008->737|2222->920|2237->926|2278->945|2364->1000
-                    LINES: 27->1|30->5|30->5|31->1|33->4|34->5|36->7|36->7|36->7|40->11|40->11|40->11|44->15|44->15|45->16|45->16|46->17|46->17|48->19|53->24|60->31|60->31|60->31|63->34
+                    HASH: 20dd5201569e5cf87c492ba1ec3adfe3025e50a6
+                    MATRIX: 769->1|887->58|919->82|998->33|1028->55|1057->136|1092->142|1103->146|1136->148|1215->197|1255->228|1290->230|1376->285|1451->338|1497->353|1570->404|1616->419|1689->470|1913->663|1928->669|1969->688|2058->746|2098->755
+                    LINES: 27->1|30->5|30->5|31->1|33->4|34->5|36->7|36->7|36->7|40->11|40->11|40->11|44->15|44->15|45->16|45->16|46->17|46->17|54->25|54->25|54->25|57->28|59->30
                     -- GENERATED --
                 */
             

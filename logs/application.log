@@ -1,13 +1,13 @@
-2016-10-31 17:16:25,174 - [INFO] - from play in main 
+2016-11-02 10:42:14,118 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2016-10-31 17:17:07,426 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
+2016-11-02 10:42:17,638 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 database [default] connected at jdbc:h2:mem:play
 
-2016-10-31 17:17:08,785 - [ERROR] - from application in New I/O server worker #1-1 
+2016-11-02 10:42:19,221 - [ERROR] - from application in New I/O server worker #1-2 
 
 
-! @7206lcod4 - Internal server error, for request [GET /] ->
+! @720j9mn2m - Internal server error, for request [GET /] ->
 
 play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:424) ~[play_2.9.1.jar:2.0]
@@ -37,10 +37,10 @@ play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evoluti
 	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1495) ~[akka-actor.jar:2.0]
 	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0]
 
-2016-10-31 17:40:43,926 - [WARN] - from play in New I/O server worker #1-3 
+2016-11-02 10:42:21,534 - [WARN] - from play in New I/O server worker #1-2 
 Applying evolution script for database 'default':
 
-# --- Rev:1,Ups - d5b04a1
+# --- Rev:1,Ups - 0430666
 create table company (
 id                        bigint not null,
 name                      varchar(255),
@@ -56,14 +56,24 @@ company_id                bigint,
 constraint pk_computer primary key (id))
 ;
 
+create table reference (
+id                        bigint not null,
+title                      varchar(255),
+link               varchar(255),
+note              varchar(255),
+constraint pk_reference primary key (id))
+;
+
+
 create sequence company_seq start with 1000;
 
 create sequence computer_seq start with 1000;
+create sequence reference_seq start with 1000;
 
 alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
 create index ix_computer_company_1 on computer (company_id);
 
-# --- Rev:2,Ups - 10f7a8a
+# --- Rev:2,Ups - 13ac5d0
 insert into company (id,name) values (  1,'Apple Inc.');
 insert into company (id,name) values (  2,'Thinking Machines');
 insert into company (id,name) values (  3,'RCA');
@@ -681,22 +691,113 @@ insert into computer (id,name,introduced,discontinued,company_id) values (571,'L
 insert into computer (id,name,introduced,discontinued,company_id) values (572,'Dell Vostro',null,null,null);
 insert into computer (id,name,introduced,discontinued,company_id) values (573,'Gateway LT3103U','2008-01-01',null,null);
 insert into computer (id,name,introduced,discontinued,company_id) values (574,'iPhone 4S','2011-10-14',null,1);
+insert into reference (id,title,link,note) values (100,'Reference1','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (101,'Reference2','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (102,'Reference3','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (103,'Reference4','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (104,'Reference5','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (105,'Reference6','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (106,'Reference7','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (107,'Reference8','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (108,'Reference9','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (109,'Reference10','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (110,'Reference11','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (111,'Reference12','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (112,'Reference13','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (113,'Reference14','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (114,'Reference15','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (115,'Reference16','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (116,'Reference17','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (117,'Reference18','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (118,'Reference19','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (119,'Reference20','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (120,'Reference21','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (121,'Reference22','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (122,'Reference23','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (123,'Reference24','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (124,'Reference25','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (125,'Reference26','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (126,'Reference27','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (127,'Reference28','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (128,'Reference29','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (129,'Reference30','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (130,'Reference31','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (131,'Reference32','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (132,'Reference33','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (133,'Reference34','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (134,'Reference35','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (135,'Reference36','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (136,'Reference37','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (137,'Reference38','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (138,'Reference39','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (139,'Reference40','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (140,'Reference41','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (141,'Reference42','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (142,'Reference43','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (143,'Reference44','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (144,'Reference45','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (145,'Reference46','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (146,'Reference47','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (147,'Reference48','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (148,'Reference49','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (149,'Reference50','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (150,'Reference51','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (151,'Reference52','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (152,'Reference53','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (153,'Reference54','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (154,'Reference55','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (155,'Reference56','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (156,'Reference57','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (157,'Reference58','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (158,'Reference59','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (159,'Reference60','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (160,'Reference61','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (161,'Reference62','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (162,'Reference63','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (163,'Reference64','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (164,'Reference65','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (165,'Reference66','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (166,'Reference67','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (167,'Reference68','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (168,'Reference69','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (169,'Reference70','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (170,'Reference71','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (171,'Reference72','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (172,'Reference73','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (173,'Reference74','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (174,'Reference75','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (175,'Reference76','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (176,'Reference77','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (177,'Reference78','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (178,'Reference79','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (179,'Reference80','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (180,'Reference81','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (181,'Reference82','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (182,'Reference83','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (183,'Reference84','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (184,'Reference85','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (185,'Reference86','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (186,'Reference87','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (187,'Reference88','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (188,'Reference89','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (189,'Reference90','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (190,'Reference91','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (191,'Reference92','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (192,'Reference93','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (193,'Reference94','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (194,'Reference95','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (195,'Reference96','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (196,'Reference97','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (197,'Reference98','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (198,'Reference99','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (199,'Reference100','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (200,'Reference101','www.example.com', 'note example');
+insert into reference (id,title,link,note) values (201,'Reference102','www.example.com', 'note example');
 
 
-2016-10-31 17:40:45,250 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
+2016-11-02 10:42:22,446 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 database [default] connected at jdbc:h2:mem:play
 
-2016-10-31 17:40:45,510 - [WARN] - from play in New I/O server worker #1-4 
-Applying evolution script for database 'default':
-
-
-
-2016-10-31 17:40:46,261 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
-Application started (Dev)
-
-2016-10-31 17:40:46,660 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
-database [default] connected at jdbc:h2:mem:play
-
-2016-10-31 17:40:47,156 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
+2016-11-02 10:42:22,989 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 Application started (Dev)
 
