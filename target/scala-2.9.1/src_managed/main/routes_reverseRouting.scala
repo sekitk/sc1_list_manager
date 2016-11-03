@@ -1,6 +1,6 @@
-// @SOURCE:C:/workspace/PlayFramework/play-2.0/samples/java/computer-database/conf/routes
-// @HASH:12085c110ff3b370a80aeb84b62266b2f2e795b7
-// @DATE:Tue Nov 01 15:23:08 GMT 2016
+// @SOURCE:C:/workspace/sc1_list_manager/conf/routes
+// @HASH:43893288f9a43264eb4b23832d7f5cdc611233e9
+// @DATE:Thu Nov 03 22:12:33 GMT 2016
 
 import play.core._
 import play.core.Router._
@@ -36,31 +36,31 @@ class ReverseApplication {
  
 // @LINE:20
 def delete(id:Long) = {
-   Call("POST", "/computers/" + implicitly[PathBindable[Long]].unbind("id", id) + "/delete")
+   Call("POST", "/references/" + implicitly[PathBindable[Long]].unbind("id", id) + "/delete")
 }
                                                         
  
 // @LINE:12
 def create() = {
-   Call("GET", "/computers/new")
+   Call("GET", "/reference/new")
 }
                                                         
  
 // @LINE:9
-def list(p:Int = 0, s:String = "name", o:String = "asc", f:String = "") = {
-   Call("GET", "/computers" + queryString(List(if(p == 0) None else Some(implicitly[QueryStringBindable[Int]].unbind("p", p)), if(s == "name") None else Some(implicitly[QueryStringBindable[String]].unbind("s", s)), if(o == "asc") None else Some(implicitly[QueryStringBindable[String]].unbind("o", o)), if(f == "") None else Some(implicitly[QueryStringBindable[String]].unbind("f", f)))))
+def list(p:Int = 0, s:String = "title", o:String = "asc", f:String = "") = {
+   Call("GET", "/references" + queryString(List(if(p == 0) None else Some(implicitly[QueryStringBindable[Int]].unbind("p", p)), if(s == "title") None else Some(implicitly[QueryStringBindable[String]].unbind("s", s)), if(o == "asc") None else Some(implicitly[QueryStringBindable[String]].unbind("o", o)), if(f == "") None else Some(implicitly[QueryStringBindable[String]].unbind("f", f)))))
 }
                                                         
  
 // @LINE:17
 def update(id:Long) = {
-   Call("POST", "/computers/" + implicitly[PathBindable[Long]].unbind("id", id))
+   Call("POST", "/references/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                         
  
 // @LINE:13
 def save() = {
-   Call("POST", "/computers")
+   Call("POST", "/references")
 }
                                                         
  
@@ -72,7 +72,7 @@ def index() = {
  
 // @LINE:16
 def edit(id:Long) = {
-   Call("GET", "/computers/" + implicitly[PathBindable[Long]].unbind("id", id))
+   Call("GET", "/references/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                         
 
@@ -128,7 +128,7 @@ def delete = JavascriptReverseRoute(
    "controllers.Application.delete",
    """
       function(id) {
-      return _wA({method:"POST", url:"/computers/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id) + "/delete"})
+      return _wA({method:"POST", url:"/references/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id) + "/delete"})
       }
    """
 )
@@ -139,7 +139,7 @@ def create = JavascriptReverseRoute(
    "controllers.Application.create",
    """
       function() {
-      return _wA({method:"GET", url:"/computers/new"})
+      return _wA({method:"GET", url:"/reference/new"})
       }
    """
 )
@@ -150,7 +150,7 @@ def list = JavascriptReverseRoute(
    "controllers.Application.list",
    """
       function(p,s,o,f) {
-      return _wA({method:"GET", url:"/computers" + _qS([(p == """ +  implicitly[JavascriptLitteral[Int]].to(0) + """ ? null : (""" + implicitly[QueryStringBindable[Int]].javascriptUnbind + """)("p", p)), (s == """ +  implicitly[JavascriptLitteral[String]].to("name") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("s", s)), (o == """ +  implicitly[JavascriptLitteral[String]].to("asc") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("o", o)), (f == """ +  implicitly[JavascriptLitteral[String]].to("") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("f", f))])})
+      return _wA({method:"GET", url:"/references" + _qS([(p == """ +  implicitly[JavascriptLitteral[Int]].to(0) + """ ? null : (""" + implicitly[QueryStringBindable[Int]].javascriptUnbind + """)("p", p)), (s == """ +  implicitly[JavascriptLitteral[String]].to("title") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("s", s)), (o == """ +  implicitly[JavascriptLitteral[String]].to("asc") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("o", o)), (f == """ +  implicitly[JavascriptLitteral[String]].to("") + """ ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("f", f))])})
       }
    """
 )
@@ -161,7 +161,7 @@ def update = JavascriptReverseRoute(
    "controllers.Application.update",
    """
       function(id) {
-      return _wA({method:"POST", url:"/computers/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
+      return _wA({method:"POST", url:"/references/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )
@@ -172,7 +172,7 @@ def save = JavascriptReverseRoute(
    "controllers.Application.save",
    """
       function() {
-      return _wA({method:"POST", url:"/computers"})
+      return _wA({method:"POST", url:"/references"})
       }
    """
 )
@@ -194,7 +194,7 @@ def edit = JavascriptReverseRoute(
    "controllers.Application.edit",
    """
       function(id) {
-      return _wA({method:"GET", url:"/computers/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
+      return _wA({method:"GET", url:"/references/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
       }
    """
 )

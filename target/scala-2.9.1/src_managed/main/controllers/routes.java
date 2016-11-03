@@ -1,6 +1,6 @@
-// @SOURCE:C:/workspace/PlayFramework/play-2.0/samples/java/computer-database/conf/routes
-// @HASH:12085c110ff3b370a80aeb84b62266b2f2e795b7
-// @DATE:Tue Nov 01 15:23:08 GMT 2016
+// @SOURCE:C:/workspace/sc1_list_manager/conf/routes
+// @HASH:43893288f9a43264eb4b23832d7f5cdc611233e9
+// @DATE:Thu Nov 03 22:12:33 GMT 2016
 
 package controllers;
 
