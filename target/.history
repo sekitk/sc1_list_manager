@@ -32,3 +32,10 @@ exit
 clean
 help
 run
+clean
+run
+clean
+run
+set _JAVA_OPTIONS="-Dfile.encoding=SJIS"
+exit
+run

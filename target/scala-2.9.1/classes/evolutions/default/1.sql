@@ -3,7 +3,7 @@
 # --- !Ups
 
 create table company (
-  id                        bigint not null,
+  id                        bigint not null AUTO_INCREMENT,
   name                      varchar(255),
   constraint pk_company primary key (id))
 ;
@@ -18,7 +18,7 @@ create table computer (
 ;
 
 create table reference (
-  id                        bigint not null,
+  id                        bigint not null AUTO_INCREMENT,
     title                      varchar(255),
       link               varchar(255), 
         note              varchar(255),

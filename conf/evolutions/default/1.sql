@@ -25,15 +25,12 @@ create table reference (
 	    constraint pk_reference primary key (id))
 	    ;
 	    
+create table user (id bigint not null AUTO_INCREMENT,email varchar(255), password varchar(255), constraint pk_user primary key (id));
 
-create sequence company_seq start with 1000;
-
-create sequence computer_seq start with 1000;
-create sequence reference_seq start with 1000;
 
 alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
 create index ix_computer_company_1 on computer (company_id);
-
+insert into user (email,password) values('mail@example.com','password');
 
 # --- !Downs
 
