@@ -37,6 +37,7 @@ public class Application extends Controller {
      * @param order Sort order (either asc or desc)
      * @param filter Filter applied on computer names
      */
+     @Security.Authenticated(Secured.class)
     public static Result list(int page, String sortBy, String order, String filter) {
         return ok(
             list.render(
@@ -51,6 +52,7 @@ public class Application extends Controller {
      *
      * @param id Id of the computer to edit
      */
+      @Security.Authenticated(Secured.class)
     public static Result edit(Long id) {
         Form<Reference> referenceForm = form(Reference.class).fill(
             Reference.find.byId(id)
@@ -65,6 +67,7 @@ public class Application extends Controller {
      *
      * @param id Id of the computer to edit
      */
+  @Security.Authenticated(Secured.class)
     public static Result update(Long id) {
         Form<Reference> referenceForm = form(Reference.class).bindFromRequest();
         if(referenceForm.hasErrors()) {
@@ -78,6 +81,7 @@ public class Application extends Controller {
     /**
      * Display the 'new computer form'.
      */
+    @Security.Authenticated(Secured.class)
     public static Result create() {
         Form<Reference> referenceForm = form(Reference.class);
         return ok(
@@ -88,6 +92,7 @@ public class Application extends Controller {
     /**
      * Handle the 'new computer form' submission 
      */
+    @Security.Authenticated(Secured.class)
     public static Result save() {
         Form<Reference> referenceForm = form(Reference.class).bindFromRequest();
         if(referenceForm.hasErrors()) {
@@ -96,16 +101,50 @@ public class Application extends Controller {
         referenceForm.get().save();
         flash("success", "Reference " + referenceForm.get().title + " has been created");
         return GO_HOME;
-}    
+    }    
+   
     /**
      * Handle computer deletion
      */
+    @Security.Authenticated(Secured.class)
     public static Result delete(Long id) {
         Reference.find.ref(id).delete();
         flash("success", "Reference has been deleted");
         return GO_HOME;
     }
     
+    public static Result login() {
+    return ok(
+            login.render(form(Login.class))
+	        );
+		}
+
+    public static class Login {
+
+        public String email;
+        public String password;
+
+    public String validate(){
+      if(User.authenticate(email,password)==null){
+        return"Invalid user or password";
+      }
+       return null;
+    }
+   }
+
+public static Result authenticate() {
+    Form<Login> loginForm = form(Login.class).bindFromRequest();
+if(loginForm.hasErrors()){
+return badRequest(login.render(loginForm));
+}else{
+session().clear();
+session("email",loginForm.get().email);
+return redirect(
+routes.Application.index()
+);
+}
+
 
 }
-            
+
+}

@@ -64,7 +64,7 @@ Seq(format.raw/*1.17*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Thu Nov 03 22:12:34 GMT 2016
+                    DATE: Fri Nov 04 00:10:38 GMT 2016
                     SOURCE: C:/workspace/sc1_list_manager/app/views/main.scala.html
                     HASH: d88cbdda70bb70be42762f7c4e642627e093e3e7
                     MATRIX: 752->1|839->16|1022->169|1036->175|1101->218|1205->292|1219->298|1275->332|1436->462|1451->468|1493->488|1684->648|1713->655

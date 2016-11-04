@@ -49,7 +49,7 @@ Seq(format.raw/*1.34*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Thu Nov 03 22:12:34 GMT 2016
+                    DATE: Fri Nov 04 00:10:38 GMT 2016
                     SOURCE: C:/workspace/sc1_list_manager/app/views/twitterBootstrapInput.scala.html
                     HASH: 3f1d21c813af9bc1467d0f6f9a7bcffcd6473bdf
                     MATRIX: 785->1|889->33|920->194|974->218|1004->240|1038->242|1075->248|1126->269|1142->277|1166->280|1199->283|1215->291|1242->297|1316->341|1332->349|1359->355|1427->392|1444->400|1487->421

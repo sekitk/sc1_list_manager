@@ -1,6 +1,6 @@
 // @SOURCE:C:/workspace/sc1_list_manager/conf/routes
-// @HASH:43893288f9a43264eb4b23832d7f5cdc611233e9
-// @DATE:Thu Nov 03 22:12:33 GMT 2016
+// @HASH:e3d63dea7f44dcb0e1b895694dd1bb3392f46f5e
+// @DATE:Fri Nov 04 00:10:38 GMT 2016
 
 import play.core._
 import play.core.Router._
@@ -45,7 +45,15 @@ val controllers_Application_delete6 = Route("POST", PathPattern(List(StaticPart(
 // @LINE:23
 val controllers_Assets_at7 = Route("GET", PathPattern(List(StaticPart("/assets/"),DynamicPart("file", """.+"""))))
                     
-def documentation = List(("""GET""","""/""","""controllers.Application.index()"""),("""GET""","""/references""","""controllers.Application.list(p:Int ?= 0, s:String ?= "title", o:String ?= "asc", f:String ?= "")"""),("""GET""","""/reference/new""","""controllers.Application.create()"""),("""POST""","""/references""","""controllers.Application.save()"""),("""GET""","""/references/$id<[^/]+>""","""controllers.Application.edit(id:Long)"""),("""POST""","""/references/$id<[^/]+>""","""controllers.Application.update(id:Long)"""),("""POST""","""/references/$id<[^/]+>/delete""","""controllers.Application.delete(id:Long)"""),("""GET""","""/assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""))
+
+// @LINE:26
+val controllers_Application_login8 = Route("GET", PathPattern(List(StaticPart("/login"))))
+                    
+
+// @LINE:28
+val controllers_Application_authenticate9 = Route("POST", PathPattern(List(StaticPart("/login"))))
+                    
+def documentation = List(("""GET""","""/""","""controllers.Application.index()"""),("""GET""","""/references""","""controllers.Application.list(p:Int ?= 0, s:String ?= "title", o:String ?= "asc", f:String ?= "")"""),("""GET""","""/reference/new""","""controllers.Application.create()"""),("""POST""","""/references""","""controllers.Application.save()"""),("""GET""","""/references/$id<[^/]+>""","""controllers.Application.edit(id:Long)"""),("""POST""","""/references/$id<[^/]+>""","""controllers.Application.update(id:Long)"""),("""POST""","""/references/$id<[^/]+>/delete""","""controllers.Application.delete(id:Long)"""),("""GET""","""/assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""),("""GET""","""/login""","""controllers.Application.login()"""),("""POST""","""/login""","""controllers.Application.authenticate()"""))
              
     
 def routes:PartialFunction[RequestHeader,Handler] = {        
@@ -110,6 +118,22 @@ case controllers_Application_delete6(params) => {
 case controllers_Assets_at7(params) => {
    call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
         invokeHandler(_root_.controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String])))
+   }
+}
+                    
+
+// @LINE:26
+case controllers_Application_login8(params) => {
+   call { 
+        invokeHandler(_root_.controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Nil))
+   }
+}
+                    
+
+// @LINE:28
+case controllers_Application_authenticate9(params) => {
+   call { 
+        invokeHandler(_root_.controllers.Application.authenticate(), HandlerDef(this, "controllers.Application", "authenticate", Nil))
    }
 }
                     

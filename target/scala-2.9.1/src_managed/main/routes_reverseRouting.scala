@@ -1,6 +1,6 @@
 // @SOURCE:C:/workspace/sc1_list_manager/conf/routes
-// @HASH:43893288f9a43264eb4b23832d7f5cdc611233e9
-// @DATE:Thu Nov 03 22:12:33 GMT 2016
+// @HASH:e3d63dea7f44dcb0e1b895694dd1bb3392f46f5e
+// @DATE:Fri Nov 04 00:10:38 GMT 2016
 
 import play.core._
 import play.core.Router._
@@ -12,6 +12,8 @@ import play.libs.F
 import Router.queryString
 
 
+// @LINE:28
+// @LINE:26
 // @LINE:23
 // @LINE:20
 // @LINE:17
@@ -22,6 +24,8 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
+// @LINE:28
+// @LINE:26
 // @LINE:20
 // @LINE:17
 // @LINE:16
@@ -33,6 +37,12 @@ class ReverseApplication {
     
 
 
+ 
+// @LINE:26
+def login() = {
+   Call("GET", "/login")
+}
+                                                        
  
 // @LINE:20
 def delete(id:Long) = {
@@ -75,6 +85,12 @@ def edit(id:Long) = {
    Call("GET", "/references/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                         
+ 
+// @LINE:28
+def authenticate() = {
+   Call("POST", "/login")
+}
+                                                        
 
                       
     
@@ -101,6 +117,8 @@ def at(file:String) = {
                     
 
 
+// @LINE:28
+// @LINE:26
 // @LINE:23
 // @LINE:20
 // @LINE:17
@@ -111,6 +129,8 @@ def at(file:String) = {
 // @LINE:6
 package controllers.javascript {
 
+// @LINE:28
+// @LINE:26
 // @LINE:20
 // @LINE:17
 // @LINE:16
@@ -122,6 +142,17 @@ class ReverseApplication {
     
 
 
+ 
+// @LINE:26
+def login = JavascriptReverseRoute(
+   "controllers.Application.login",
+   """
+      function() {
+      return _wA({method:"GET", url:"/login"})
+      }
+   """
+)
+                                                        
  
 // @LINE:20
 def delete = JavascriptReverseRoute(
@@ -199,6 +230,17 @@ def edit = JavascriptReverseRoute(
    """
 )
                                                         
+ 
+// @LINE:28
+def authenticate = JavascriptReverseRoute(
+   "controllers.Application.authenticate",
+   """
+      function() {
+      return _wA({method:"POST", url:"/login"})
+      }
+   """
+)
+                                                        
 
                       
     
@@ -230,6 +272,8 @@ def at = JavascriptReverseRoute(
                     
 
 
+// @LINE:28
+// @LINE:26
 // @LINE:23
 // @LINE:20
 // @LINE:17
@@ -240,6 +284,8 @@ def at = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
+// @LINE:28
+// @LINE:26
 // @LINE:20
 // @LINE:17
 // @LINE:16
@@ -251,6 +297,12 @@ class ReverseApplication {
     
 
 
+ 
+// @LINE:26
+def login() = new play.api.mvc.HandlerRef(
+   controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Seq())
+)
+                              
  
 // @LINE:20
 def delete(id:Long) = new play.api.mvc.HandlerRef(
@@ -291,6 +343,12 @@ def index() = new play.api.mvc.HandlerRef(
 // @LINE:16
 def edit(id:Long) = new play.api.mvc.HandlerRef(
    controllers.Application.edit(id), HandlerDef(this, "controllers.Application", "edit", Seq(classOf[Long]))
+)
+                              
+ 
+// @LINE:28
+def authenticate() = new play.api.mvc.HandlerRef(
+   controllers.Application.authenticate(), HandlerDef(this, "controllers.Application", "authenticate", Seq())
 )
                               
 
